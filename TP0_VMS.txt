@@ -1,0 +1,219 @@
+
+=================================================
+	SCRIPTS SYSTEMES 
+	-- Machines virtuelles
+=================================================
+
+
+- Installer VirtualBox
+- Récupérer une ISO Debian
+  (image d'installation de taille réduite)
+
+- Installation minimale
+  -> pas de "Desktop Environment"
+
+- Configuration / adaptation selon besoin
+
+- Possibilités offertes :
+	- Snapshot / restauration / clonage
+	- Connexion par pont
+	- Partage de dossier entre OS hôte et OS VM
+	- ...
+
+- Tests personnels
+
+
+	TERMINAL LINUX
+---------------------------------
+___ $ : mode courant
+___ # : mode super utilisateur
+
+Se loguer en "super utilisateur" :
+___ $ su
+___ #
+
+Sortir du mode "super utilisateur" :
+___ # exit
+___ $
+
+
+	MISE A JOUR
+-----------------------------------
+___ # apt-get update	
+___ # apt-get upgrade
+
+
+	GESTION DES PAQUETS
+-----------------------------------
+Installer le paquet "tree" :
+___ # apt-get install tree
+
+Retirer le paquet "tree" :
+___ # apt-get remove tree
+
+Rechercher un paquet qui considère "toto":
+___ $ apt-cache search toto
+
+Rechercher un paquet qui considère "toto"
+ et qui commence par "v" :
+___ $ apt-cache search toto | grep ^v
+
+Rechercher un paquet qui considère "toto"
+ et qui considère "gigi" :
+___ $ apt-cache search toto | grep gigi
+
+Rechercher un paquet qui considère "toto"
+ et qui considère "gigi"
+ et qui commence par "v" :
+___ $ apt-cache search toto | grep gigi | grep ^v
+
+Exemple :
+___ $ apt-cache search python
+___ $ apt-cache search python | grep id 
+___ $ apt-cache search python | grep id | grep ^i 
+
+
+	QUELQUES COMMANDES LINUX DE BASE
+----------------------------------------
+Lister le contenu d'un répertoire :
+___ $ ls
+
+Lister les fichiers/dossiers cachés :
+___ $ ls -a
+
+Faire un répertoire :
+___ $ mkdir toto
+
+Se placer dans un répertoire :
+___ $ cd toto
+
+Se placer dans le répertoire parent :
+___ $ cd ..
+
+Chemin du répertoire courant :
+___ $ pwd
+
+Editer un fichier :
+___ $ nano a.txt
+___ $ vi a.txt
+	
+Egalement :	
+	- vim ; 
+	- emacs.
+
+
+	LINUX EN MODE CONSOLE
+--------------------------------------
+Eteindre :
+___ # /sbin/shutdown
+
+Redemarrer :
+___ # /sbin/poweroff
+
+Installer htop :
+___ # apt install htop
+___ $ htop
+
+
+	AUTOCOMPLETION BASH
+--------------------------------------
+___ # nano /etc/bash.bashrc
+
+Décommenter la partie "enable bash completion" :
+
+	----------- /etc/bash.bashrc -----------
+	# enable bash completion in interactive shells
+	décommenter ici
+	...
+	----------------------------------------
+
+Redémarrer :
+___ # /sbin/reboot
+
+
+	FLUXBOX
+----------------------------------------
+Installer fluxbox :
+___ # apt install fluxbox
+
+Installer xorg :
+___ # apt install xorg
+
+Lancer fluxbox :
+___ $ startx
+
+
+	INTALLER LES "ADDITIONS INVITE"
+--------------------------------------------
+Si le clavier est en qwerty : 
+___ $ setxkbmap fr 
+
+Périphériques -> Insérerer l'image CD des Additions invité...
+
+Monter le lecteur CDROM :
+___ # mount -t iso9660 /dev/cdrom /media/cdrom
+(Pour démonter : umount /mnt/cdrom)
+
+___ # cd /media/cdrom
+___ # ./VBoxLinuxAdditions.run
+
+  PROBLEMES RENCONTRES :
+	-------------------------------
+	vboxclient failed to register resizing support rc=verr invalid function
+	vboxclient failed to connect to the virtualbox kernel service, rc=verr_access...
+	--------------------------------
+
+  SOLUTION : 
+___ # apt install linux-headers-$(uname -r) build-essential dkms
+
+puis:
+___ # /sbin/reboot
+___ # cd /media/cdrom
+___ # ./VBoxLinuxAdditions.run
+___ # /sbin/reboot
+
+
+	PERSONNALISATION DU MENU FLUXBOX
+------------------------------------------------
+Placez vous dans le repertoire d'accueil de user :
+___ $ cd ~
+
+Lister les fichiers/repertoires cachés:
+___ $ ls -a
+
+___ $ cd .fluxbox
+
+Consider le fichier "menu" :
+___ $ nano menu
+
+-> Ajouter Bash au menu (premier niveau)
+	-> vous pouvez installer un éditeur de texte
+	   et travailler dans Fluxbox
+-> Installer Firefox 
+-> Ajouter Firefox au menu (premier niveau)
+
+
+	QUELQUES POSSIBILITES POUR LES VMS
+-----------------------------------------------
+
+1- Snapshot / restauration / clonage
+
+2- Connexion par pont
+exemples :
+	- ping entre Hôte et VM ;
+	- serveur web sur VM / connexion via hôte. 
+
+3- Partage de dossier entre OS hôte et OS VM
+- Au préalable : installation des "additions invité"
+
+- Sur l'OS hôte : 
+	- creation du dossier "partage"
+	- GUI VirtualBox
+		> Configuration
+	  	  > Dossiers partagés
+
+- Sur l'OS VM : 
+___ $ mkdir _partage
+
+- En root:
+___ # mount -t vboxsf partage /home/user/_partage
