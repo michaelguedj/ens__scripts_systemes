@@ -1,0 +1,74 @@
+
+================================
+	Memo Vim
+================================
+
+ESC 	-> mode commande
+i   	-> insertion
+a   	-> insertion "after"
+:w  	-> sauvegarde ("write") 
+:q  	-> quitter
+:wq 	-> quitter en sauvant
+:q! 	-> quitter sans sauver
+
+
+:u  	-> "undo"
+CTR+r 	-> "redo"
+v   	-> selectionne
+y   	-> copie
+p   	-> colle ("paste")
+
+
+:e toto		-> ouvrir "toto"
+:sav toto	-> sauver sous "toto"
+d		-> supprimer ("delete")
+dd		-> supprimer ligne
+D 		-> supprime jusqu'à la fin de la ligne
+
+
+/ + toto (+ Entrer) 	-> rechercher "toto"
+/ + \c + toto 	 	-> rechercher "toto" sans tenir compte de la casse
+n			-> occurence suivante
+N			-> occurence précédante
+
+
+CTR+w s 	-> "split" horizontal
+CTR+w v 	-> "split" vertical
+CTR+w w 	-> changer de fenêtre "splitée"
+CTR+w c 	-> fermer fenêtre "splitée"
+
+
+0	-> début de ligne
+$ 	-> fin de ligne
+gg	-> début du fichier
+G	-> fin du fichier
+
+
+:%s/toto/tata/g		-> remplace chaque occurrence de "toto" par "tata"
+:%s/toto/tata/gc	-> idem mais demande confirmation
+
+
+CTR-v 	selection en colonne (possibilité de copier/coller en colonne)
+
+Commenter plusieurs lignes 
+------------------------------
+CTR-v
+Sélectionner les lignes que vous souhaitez commenter
+I
+#
+ESC ESC
+
+Décommenter plusieurs lignes 
+------------------------------
+CTR+v
+Sélectionner le bloc à decommenter (uniquement les caractères à supprimer)
+d
+
+
+Indenter
+----------
+CTR+v >
+
+Désindenter
+-------------
+CTR+v <
