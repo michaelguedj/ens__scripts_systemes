@@ -1,0 +1,35 @@
+#!/bin/bash
+
+# 
+# Name: is_bash.sh
+#
+# Description:
+# ---- takes 1 argument as input;
+# ---- return 0 if the argument is a Bash file;
+# ---- return 1 otherwise.
+#
+
+if [ "$#" != 1 ]
+then 
+	echo "One argument is required".
+	exit 1
+fi
+
+if [ ! -e $1 ]
+then 
+	echo "The argument must be present in the current folder".
+	exit 1
+fi
+
+var=$( file $1 | grep "Bourne-Again shell script" )
+
+if [ "$var" = "" ]
+then 
+	exit 1
+fi
+
+echo "The input argument \"$0\" is a Bash file"
+exit 0
+
+
+
