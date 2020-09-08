@@ -1,0 +1,19 @@
+" AFFICHE LES NUMEROS DE LIGNE
+set nu 
+
+" INDENTATION
+syn on
+syntax on
+filetype indent on
+
+" TAILLE DES TABULATIONS
+set tabstop =4
+set shiftwidth =4
+set softtabstop =4
+
+" AFFICHER LA LIGNE CONTENANT LE CURSEUR
+set cursorline
+
+" AFFICHER LES PARENTHESES CORRESPONDANTES
+set showmatch
+
